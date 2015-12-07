@@ -11,6 +11,7 @@ var app = express(); // luodaan serveri
 // =======================MIDDLEWARES=============================
 
 //bodyparser json() middleware parses the json object from http post request
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 app.use(function(req,res,next){
