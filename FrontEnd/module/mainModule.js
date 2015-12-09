@@ -14,6 +14,6 @@ main_module.config(function($routeProvider){
     }).when('/list',{
         
         templateUrl:'partial_dataView.html',
-        //controller:'controllerDataView'        
+        controller:'controllerDataView'        
     });
 });

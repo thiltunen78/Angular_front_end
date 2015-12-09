@@ -46,9 +46,11 @@ main_module.controller('controllerLogin',function($scope,loginFactory,$location)
             //code inside this block will be called when success response from server receives
             
             $('.note').text('Register succesfull');
+            alert('Register succesfull');
             
         },function error(data){        
-            $('.note').text('Username is in use. Please select another');                         
+            $('.note').text('Username is in use. Please select another'); 
+            alert('Username is in use. Please select another');
         });
     }
 });
