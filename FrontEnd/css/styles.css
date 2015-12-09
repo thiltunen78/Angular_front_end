@@ -23,9 +23,23 @@ p{
 
 .login_container{
     width: 500px;
-    margin: 8px auto;
+    margin: 50px auto;
     border: 2px solid black;
     border-radius: 5px;
-    background-color:darkcyan; 
+    background-color:lightblue; 
     padding: 8px;
+}
+
+.lisa_padding{
+    padding: 50px;
+}
+
+.flash-style{
+    
+    width: 30%;
+    margin: auto 0;
+    position: absolute;
+    top: 10%;
+    left: 450px;
+    
 }

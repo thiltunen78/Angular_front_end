@@ -1,18 +1,23 @@
-<a href="/logout">Logout</a>
-<h1>Here is the table data of your friends</h1>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Age</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat='person in friendData'>
-            <td>{{person.name}}</td>
-            <td>{{person.address}}</td>
-            <td>{{person.age}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="lisa_padding">
+    <a href="/logout">Logout</a>
+    <a href="#/add">Add</a>
+    <a href="#/delete">Delete</a>
+    <h1>Here is the table data of your friends</h1>
+    <h4>Click row to edit</h4>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='person in friendData' ng-click='rowCliked(person._id)'>
+                <td>{{person.name}}</td>
+                <td>{{person.address}}</td>
+                <td>{{person.age}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

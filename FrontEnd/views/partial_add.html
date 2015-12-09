@@ -1,0 +1,11 @@
+<div class="login_container form-group">
+<form>
+    <!--ng-model directive is the way to transfer data to controller-->
+    <input type="text" class="form-control" placeholder="name" ng-model="name"><br/>
+    <input type="text" class="form-control" placeholder="address" ng-model="address"><br/>
+    <input type="number" class="form-control" placeholder="age" ng-model="age"><br/>
+    <input type="button" value="Add" id="add-btn" ng-click="addClicked()">
+    <input type="button" value="Exit" ng-click="exitClicked()">    
+</form>
+</div>
+<div class="flash-style" flash-message="2000" ></div>

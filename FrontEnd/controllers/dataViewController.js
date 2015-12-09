@@ -1,24 +1,16 @@
 main_module.controller('controllerDataView',function($scope,dataViewFactory){
 
     console.log('controllerDataView loaded');
+        
+    dataViewFactory.getFriendData(function(dataArray){
+        
+        $scope.friendData = dataArray;
+    });
     
-    if(dataViewFactory.friendsArray.length === 0)
-    {
-        var response = dataViewFactory.getFriendData();
-    
-        response.then(function(data){
-    
-            dataViewFactory.friendsArray = data;
-            $scope.friendData = data;
-            
-        },function(error){
-    
-    
-        });
-    }
-    else
-    {
-        $scope.friendData = dataViewFactory.friendsArray;   
+    $scope.rowClicked = function(id){
+        
+        dataViewFactory.selected_id = id;
+        $location.path('/edit').replace();
     }   
      
 });

@@ -40,20 +40,28 @@ exports.findPersonsByName = function(req,res){
 }
                           
 // this function saves new person information to our person collection
-exports.saveNewPerson = function(req,res){
+exports.saveNewPerson = function(req,res){    
     
     var personTemp = new db.Person(req.body);
-    //save it to database
-    personTemp.save(function(err,ok){
+    //Save it to database
+    personTemp.save(function(err,newData){
         
-        db.Friends.update({username:req.body.user},
+        db.Friends.update({username:req.session.kayttaja},
                           {$push:{'friends':personTemp._id}},
-                         function(err,model){
+                          function(err,model){
             
-            // make a redirect to root context
-            //res.redirect('/persons.html');
-            res.send("added stuff");
-        });        
+            //console.log("SEND REDIRECT!!!!!");
+            //Make a redirect to root context
+            //res.redirect(301,'/persons.html');
+            if(err){
+                
+                res.status(500).json({message:'Fail'});
+            }else{
+                
+                res.status(200).json({data:newData});
+            }
+        });
+     
     });
 }
 

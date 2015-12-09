@@ -2,7 +2,7 @@
 //The main_module variable is defined in mainModule.js file(located in module folder)
 //The first argument is the name of the controller. This is important, because you use THIS name when you want to use this controller in some view.
 //The $scope object is the glue between the view and controller. You use this object to transfer data between the view and controller.
-main_module.controller('controllerLogin',function($scope,loginFactory,$location){
+main_module.controller('controllerLogin',function($scope,loginFactory,$location,Flash){
     
     //var user = $scope.user;
     //$scope.pass = "halituli";
@@ -26,7 +26,8 @@ main_module.controller('controllerLogin',function($scope,loginFactory,$location)
             $location.path('/list');
             
         },function error(data){        
-            $('.note').text('Wrong username or password!');                         
+            $('.note').text('Wrong username or password!');   
+            Flash.create('danger', 'Wrong username or password!', 'custom-class');
         });
     }
     
@@ -47,10 +48,12 @@ main_module.controller('controllerLogin',function($scope,loginFactory,$location)
             
             $('.note').text('Register succesfull');
             alert('Register succesfull');
+            Flash.create('success', 'Register succesfull!', 'custom-class');
             
         },function error(data){        
             $('.note').text('Username is in use. Please select another'); 
             alert('Username is in use. Please select another');
+            Flash.create('danger', 'Username is in use. Please select another!', 'custom-class');
         });
     }
 });
