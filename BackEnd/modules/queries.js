@@ -16,27 +16,20 @@ exports.getAllPersons = function(req,res){
     });
 }
 
-// this function searches database by name or by begin letters of name
+/**
+  *This function seraches database by name or 
+  *by begin letters of name
+  */
 exports.findPersonsByName = function(req,res){
-    
-    var name = req.params.nimi.split("=")[1];
-    
-    console.log(req.query.user);
-    
-    db.Friends.find({username:req.query.user}).populate({path:'friends',match:{name:{'$regex': '^' + name,'$options':'i'}}}).exec(function(err,data){
-        
-        res.send(data[0].friends);
+
+    var name = req.query.name;
+
+    db.Friends.findOne({username:req.session.kayttaja}).
+        populate({path:'friends',match:{name:{'$regex':'^' + name,'$options':'i'}}}).
+            exec(function(err,data){
+        res.send(data.friends);
     });
     
-/*    db.Person.find({name:{'$regex': '^' + name,'$options':'i'}},function(err,data){ //ilman hattua(^) hakee jos teksti sisältyy johonkin kohtaan nimiä
-        
-       if(err){           
-           res.send("Error");
-       }
-        else{
-            res.send(data);
-        }           
-    });*/
 }
                           
 // this function saves new person information to our person collection
@@ -68,27 +61,30 @@ exports.saveNewPerson = function(req,res){
 //this function removes one person from our person collection
 exports.deletePerson = function(req,res){
     
-    //what happens here is that req.params.id return "id=4858745834753485".
-    //split function splits the string from "=" and creates an array where [0] contains "id" and [1] contains "4858745834753485".
-    var id = req.params.id.split("=")[1];
+    var toDelete = [];
+    if(req.query.forDelete instanceof Array)
+        toDelete = req.query.forDelete;
+    else{
+        
+       toDelete.push(req.query.forDelete); 
+    }
     
-    db.Person.remove({_id:id},function(err){
+    db.Person.remove({_id:{$in:toDelete}},function(err,data){
         
         if(err){
-            res.send(err.message);
-        }
-        else{
+            console.log(err);
+            res.status(500).send({message:err.message});
+        }else{
             
-            db.Friends.update({username:req.body.user},
-                          {$pull:{'friends':id}},
-                         function(err,model){
-            
+            db.Friends.update({username:req.session.kayttaja},{$pull:{'friends':{$in:toDelete}}},function(err,data){
                 if(err){
-                    console.log(err.message);
+                    console.log(err);
+                    res.status(500).send({messsage:err.message});
                 }else{
-                    res.send("Delete Ok");
+                    
+                    res.status(200).send({message:'Delete success'});
                 }
-            });                   
+            });
         }
     });
 }

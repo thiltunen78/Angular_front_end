@@ -1,4 +1,4 @@
-main_module.factory('dataViewFactory',function($resource){
+main_module.factory('dataViewFactory',function($resource,$http){
 
     var factory = {};
     factory.selected_id = null;
@@ -33,6 +33,36 @@ main_module.factory('dataViewFactory',function($resource){
                 
         return resource.post(data).$promise; 
     };
+    
+    factory.updatePersonData = function(data){
+             
+        var resource = $resource('/persons',{},{'put':{method:'PUT'}});
+                
+        return resource.put(data).$promise; 
+    };
+    
+    factory.getSelectedFriend = function(){
+        
+        for(var i=0;i<factory.friendsArray.length;i++){
+        
+            if(factory.friendsArray[i]._id === factory.selected_id){
+                return factory.friendsArray[i];
+            }
+        }    
+    };
+    
+    factory.deleteData = function(data){
+        
+        $http.defaults.headers.common['content-type'] = 'application/json'; 
+        var resource = $resource('/persons',{},{'delete':{method:'DELETE'}});
+        return resource.delete(data).$promise;
+    }
+    
+    factory.search = function(term){
+        
+        var resource = $resource('/persons/search/',{name:term},{'get':{method:'GET'}});
+        return resource.query().$promise;
+    }
     
     return factory;
 });

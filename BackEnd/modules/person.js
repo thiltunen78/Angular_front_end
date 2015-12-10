@@ -8,8 +8,7 @@ router.get('/',function(req,res){
     query.getAllPersons(req,res);
 });
 
-router.get('/:nimi', function(req,res){
-    console.log("Get with name router called");
+router.get('/search', function(req,res){    
     query.findPersonsByName(req,res);    
 });
 
@@ -22,7 +21,7 @@ router.put('/',function(req,res){
     query.updatePerson(req,res);
 });
 
-router.delete('/:id',function(req,res){
+router.delete('/',function(req,res){
     
     query.deletePerson(req,res);
 });

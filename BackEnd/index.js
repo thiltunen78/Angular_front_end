@@ -47,7 +47,7 @@ app.use('/FrontEnd/lib',express.static(path.join(__dirname,'../FrontEnd/lib')));
 app.use('/FrontEnd/module',express.static(path.join(__dirname,'../FrontEnd/module')));
 app.use('/FrontEnd/controllers',express.static(path.join(__dirname,'../FrontEnd/controllers')));
 app.use('/FrontEnd/factories',express.static(path.join(__dirname,'../FrontEnd/factories')));
-
+app.use('/FrontEnd/fonts',express.static(path.join(__dirname, '../FrontEnd/fonts')));
 //======================OUR REST API MIDDLEWARES=============================
 app.use('/persons',person);
 app.use('/friends',user);

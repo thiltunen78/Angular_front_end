@@ -1,4 +1,4 @@
-main_module.controller('controllerDataView',function($scope,dataViewFactory){
+main_module.controller('controllerDataView',function($scope,dataViewFactory,$location){
 
     console.log('controllerDataView loaded');
         
@@ -13,4 +13,12 @@ main_module.controller('controllerDataView',function($scope,dataViewFactory){
         $location.path('/edit').replace();
     }   
      
+    $scope.search = function(){
+        console.log('search pressed');
+        dataViewFactory.search($scope.search_term).then(function(data){
+            console.log(data);
+            $scope.friendData = data;
+            
+        });
+    }
 });
