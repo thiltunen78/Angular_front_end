@@ -62,16 +62,6 @@ app.get('/logout',function(req,res){
     res.redirect('/');
 });
 
-// this router checks if client is logged in or not
-app.get('/isLogged',function(req,res)              
-{
-    //user is loggen in if session contains kayttaja attribute
-    if(req.session.kayttaja)
-        res.status(200).send([{status:'ok'}]);    
-    else
-        res.status(401).send([{status:'unauthorized'}]);
-});
-
 app.use(function(req,res,next){
     
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -100,6 +90,15 @@ app.use(function(req,res,next){
 //======================OUR REST API MIDDLEWARES=============================
 app.use('/persons',person);
 
+// this router checks if client is logged in or not
+app.get('/isLogged',function(req,res)              
+{
+    //user is loggen in if session contains kayttaja attribute
+    if(req.session.kayttaja)
+        res.status(200).send([{status:'ok'}]);    
+    else
+        res.status(401).send([{status:'unauthorized'}]);
+});
 
 https.createServer(options,app).listen(app.get('port'),app.get('ip'),function()
 {

@@ -3,10 +3,13 @@
 var main_module = angular.module('main_module',['ngRoute','ngResource','flash']);
 
 //this function will check if user is logged in or not. this function is used in the router below in resolve attribute.
-function loginRequired($q,$resource,$location){
+function loginRequired($q,$resource,$location,$http){
  
     //Create a promise    
     var deferred = $q.defer();
+    
+    $http.defaults.headers.common['x-access-token'] = sessionStorage['token'];
+    
     $resource('/isLogged').query().$promise.then(function success(){
     
         //mark the promise to be solved (or resolved)
