@@ -23,6 +23,10 @@ main_module.controller('controllerLogin',function($scope,loginFactory,$location,
            
             //code inside this block will be called when success response from server receives
             
+            //store json web token
+            sessionStorage['token'] = data.secret;
+            console.log(data.secret);
+            
             $location.path('/list');
             
         },function error(data){        

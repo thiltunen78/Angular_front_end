@@ -9,6 +9,9 @@ main_module.factory('dataViewFactory',function($resource,$http){
     factory.getFriendData = function(callbackFunc){
         
         if(factory.friendsArray.length === 0){
+            
+            $http.defaults.headers.common['x-access-token'] = sessionStorage['token'];
+            
             var resource = $resource('/friends',{},{'get':{method:'GET'}});
             resource.query().$promise.then(function(data){
                 
@@ -29,6 +32,8 @@ main_module.factory('dataViewFactory',function($resource,$http){
     
     factory.addPersonData = function(data){
              
+        $http.defaults.headers.common['x-access-token'] = sessionStorage['token'];
+        
         var resource = $resource('/persons',{},{'post':{method:'POST'}});
                 
         return resource.post(data).$promise; 
@@ -36,6 +41,8 @@ main_module.factory('dataViewFactory',function($resource,$http){
     
     factory.updatePersonData = function(data){
              
+        $http.defaults.headers.common['x-access-token'] = sessionStorage['token'];
+        
         var resource = $resource('/persons',{},{'put':{method:'PUT'}});
                 
         return resource.put(data).$promise; 
@@ -53,12 +60,16 @@ main_module.factory('dataViewFactory',function($resource,$http){
     
     factory.deleteData = function(data){
         
+        $http.defaults.headers.common['x-access-token'] = sessionStorage['token'];
+        
         $http.defaults.headers.common['content-type'] = 'application/json'; 
         var resource = $resource('/persons',{},{'delete':{method:'DELETE'}});
         return resource.delete(data).$promise;
     }
     
     factory.search = function(term){
+        
+        $http.defaults.headers.common['x-access-token'] = sessionStorage['token'];
         
         var resource = $resource('/persons/search/',{name:term},{'get':{method:'GET'}});
         return resource.query().$promise;
