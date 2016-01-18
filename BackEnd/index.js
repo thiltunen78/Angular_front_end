@@ -53,7 +53,7 @@ app.use('/FrontEnd/module',express.static(path.join(__dirname,'../FrontEnd/modul
 app.use('/FrontEnd/controllers',express.static(path.join(__dirname,'../FrontEnd/controllers')));
 app.use('/FrontEnd/factories',express.static(path.join(__dirname,'../FrontEnd/factories')));
 app.use('/FrontEnd/fonts',express.static(path.join(__dirname, '../FrontEnd/fonts')));
-
+app.use('/FrontEnd/directives',express.static(path.join(__dirname, '../FrontEnd/directives')));
 
 app.use('/friends',user);
 

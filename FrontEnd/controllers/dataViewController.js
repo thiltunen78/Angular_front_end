@@ -1,5 +1,7 @@
 main_module.controller('controllerDataView',function($scope,dataViewFactory,$location){
 
+    $scope.name = "by Tero Hiltunen";
+    
     console.log('controllerDataView loaded');
         
     dataViewFactory.getFriendData(function(dataArray){
