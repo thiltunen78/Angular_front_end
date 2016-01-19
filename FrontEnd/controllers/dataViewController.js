@@ -1,6 +1,14 @@
 main_module.controller('controllerDataView',function($scope,dataViewFactory,$location){
 
     $scope.name = "by Tero Hiltunen";
+    $scope.temp = ['Juha Sipilä','Stupido','Timo Soini'];
+    
+    $scope.navbarData = {
+		
+		urls:['/logout','#/delete','#/add'],
+		texts:['Logout','Delete','Add'],
+        classes:['','','']
+	}
     
     console.log('controllerDataView loaded');
         

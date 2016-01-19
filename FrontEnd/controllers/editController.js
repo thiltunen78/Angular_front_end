@@ -2,6 +2,13 @@ main_module.controller('controllerEdit',function($scope,dataViewFactory,$locatio
         
     var selectedFriend = dataViewFactory.getSelectedFriend();
     
+    $scope.navbarData = {
+		
+		urls:['/logout','#/delete','#/add'],
+		texts:['Logout','Delete','Add'],
+        classes:['','','']
+	}
+        
     $scope.id = selectedFriend._id;
     $scope.name = selectedFriend.name;
     $scope.address = selectedFriend.address;

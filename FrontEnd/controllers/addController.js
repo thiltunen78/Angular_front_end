@@ -4,6 +4,13 @@ main_module.controller('controllerAdd',function($scope,dataViewFactory,$location
     $scope.address = "";
     $scope.age = 0;
     
+    $scope.navbarData = {
+		
+		urls:['/logout','#/delete','#/add'],
+		texts:['Logout','Delete','Add'],
+        classes:['','','active']
+	}
+        
     $scope.addClicked = function(){
                 
         var temp = {

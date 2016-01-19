@@ -2,6 +2,13 @@ main_module.controller('controllerDelete',function($scope,dataViewFactory,$locat
     
     $scope.deleteArray = [];
     
+    $scope.navbarData = {
+		
+		urls:['/logout','#/delete','#/add'],
+		texts:['Logout','Delete','Add'],
+        classes:['','active','']
+	}
+        
     dataViewFactory.getFriendData(function(dataArray){
         
         $scope.friendData = dataArray;
