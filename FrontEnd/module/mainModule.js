@@ -63,5 +63,11 @@ main_module.config(function($routeProvider){
         controller:'controllerDelete',
         resolve:{loginRequired:loginRequired}
         
-    });
+    }).when('/chat',{
+        
+        templateUrl:'chat_view.html'
+      
+        
+        
+    });;
 });

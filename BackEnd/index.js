@@ -107,3 +107,12 @@ https.createServer(options,app).listen(app.get('port'),app.get('ip'),function()
 });
                                        
 //app.listen(3000);   // käynnistetään serveri
+
+//Server side socket. Note there is only one socket in server that accepts all the clien connetions.
+var io = require('socket.io')(https);
+
+//listen "connection" message from client
+io.on('connection',function(socket){
+   
+    console.log('a user connected');
+});
